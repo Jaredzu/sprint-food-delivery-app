@@ -1,0 +1,40 @@
+import React, { useState } from 'react'
+import { firebase } from '../api'
+import logo from "../logos/logo.png"
+import '../styles/Login.sass'
+
+
+const Login = () => {
+
+    const [user, setUser] = useState(null)
+
+
+
+
+    const handleClick = async () => {
+
+        const _user = await firebase.login()
+        setUser(_user)
+        console.log(user, "useState");
+        console.log(_user, "firebaseLogin");
+    }
+
+    return (
+        <>
+            <div className="login">
+                <div className="container d-flex flex-column align-items-center ">
+                    <img className="logo-app m-5" src={logo} alt="logo app" />
+                    <h3 className="">Sing in</h3>
+                    <p className="text-center">Login or create an account with your email to start ordering</p>
+                </div>
+                <div>
+                    <p className='terms m-0'>By clicking the button next you accept</p>
+                    <p className="terms text-decoration-underline">Terms of use</p>
+                    <button className="btn btn-warning btnLogin w-100" onClick={handleClick}>Login</button>
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default Login
