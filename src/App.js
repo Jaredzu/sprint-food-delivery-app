@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { RouterProvider } from 'react-router';
 import { router } from './Router';
+import './styles/App.sass'
 
 
 const App = () => {
