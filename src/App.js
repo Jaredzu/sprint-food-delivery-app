@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { RouterProvider } from 'react-router';
+import { AuthProvider } from './context/auth';
 import { router } from './Router';
 import './styles/App.sass'
 
@@ -12,7 +13,9 @@ const App = () => {
 
   return (
     <>
-      <RouterProvider router={router}/>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </>
   );
 }
