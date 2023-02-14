@@ -1,4 +1,5 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { app } from "./firebase";
 
 
 // AUTHENTICATION WITH FIREBASE

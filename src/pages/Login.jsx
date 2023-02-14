@@ -1,21 +1,24 @@
 import React, { useContext } from 'react'
-import { firebase } from '../api'
-import { auth } from '../context'
+import { Navigate } from 'react-router'
+import { auth, users } from '../api'
+import { auth as authCont } from '../context'
 import logo from "../logos/logo.png"
 import '../styles/Login.sass'
 
 
 const Login = () => {
 
-    const { user, setUser } = useContext(auth.authContext)
+    const { user, setUser } = useContext(authCont.authContext)
 
 
     const handleClick = async () => {
         try {
-            const _user = await firebase.auth.login()
+            const _user = await auth.login()
             setUser(_user)
             const { displayName, email, photoURL } = _user
-            await firebase.users.createUser({ displayName, email, photoURL })
+            await users.createUser({ displayName, email, photoURL })
+            console.log(_user);
+          {  <Navigate to="/"/>}
 
         } catch (error) {
             console.log(error);

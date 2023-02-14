@@ -9,7 +9,7 @@ import { db } from "./firebase"
 
 // CRUD USERS
 
-const userCollection = collection(db, "users")
+const dbCollection = collection(db, "users")
 
 
-export const createUser = async (user) => await addDoc(userCollection, user)
+export const createUser = async (user) => await addDoc(dbCollection, user)
