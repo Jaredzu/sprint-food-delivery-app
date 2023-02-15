@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { Navigate } from 'react-router'
 import { auth, users } from '../api'
 import { auth as authCont } from '../context'
 import logo from "../logos/logo.png"
@@ -8,17 +7,16 @@ import '../styles/Login.sass'
 
 const Login = () => {
 
-    const { user, setUser } = useContext(authCont.authContext)
+    const { setUser } = useContext(authCont.authContext)
 
 
     const handleClick = async () => {
         try {
             const _user = await auth.login()
             setUser(_user)
-            const { displayName, email, photoURL } = _user
-            await users.createUser({ displayName, email, photoURL })
+            const { displayName, email, photoURL, uid } = _user
+            await users.createUser({ displayName, email, photoURL }, uid)
             console.log(_user);
-          {  <Navigate to="/"/>}
 
         } catch (error) {
             console.log(error);
