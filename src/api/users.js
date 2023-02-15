@@ -1,7 +1,8 @@
 import {
 
     collection,
-    addDoc,
+    setDoc,
+    doc
 
 } from "firebase/firestore";
 
@@ -12,4 +13,6 @@ import { db } from "./firebase"
 const dbCollection = collection(db, "users")
 
 
-export const createUser = async (user) => await addDoc(dbCollection, user)
+export const createUser = async (user, id) => await setDoc(doc(dbCollection, id), user)
+
+//setDoc(doc(basededatos, colleccion, id), data)
