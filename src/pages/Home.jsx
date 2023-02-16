@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Navigate } from 'react-router'
 import RestaurantsList from '../components/RestaurantsList'
 import { auth, restaurantsContext } from '../context'
@@ -8,15 +8,34 @@ const Home = () => {
 
   const { user } = useContext(auth.authContext)
 
-  const { getRestaurants, rest } = useContext(restaurantsContext.restaurantsContext)
+  const { getRestaurants, rest, setRest } = useContext(restaurantsContext.restaurantsContext)
 
-	useEffect(() => {
-		if (!rest) {
-			getRestaurants()
-		}
-	}, [rest])
+  useEffect(() => {
+    if (!rest) {
+      getRestaurants()
+    }
+  }, [rest])
 
-    console.log(rest, "DESDE HOME");
+  // FILTER BUTTONS //
+
+  const filterButtons = (_category) => {
+
+    if (_category === 'all') {
+      getRestaurants()
+
+    } else {
+/*       getRestaurants() -----------------> esto genera un bug */
+      let restFiltered = rest.filter(({ categories }) => {
+
+        return categories.includes(_category)
+
+      })
+
+      setRest(restFiltered)
+    }
+
+  }
+
 
   return (<>
     {
@@ -34,7 +53,21 @@ const Home = () => {
               <img src="https://res.cloudinary.com/dif29zscp/image/upload/v1676235799/food-app-delivery-s4/Promotions/Promo_1_hwfa6z.png" alt="" />
             </div>
 
-            <RestaurantsList list={rest} />
+            <p className=''>
+              Restaurants and cafes
+            </p>
+            <div className="filter-btns d-flex mb-4 w-100">
+              <button onClick={() => filterButtons("all")} className="filter-btn btn m-1">All</button>
+              <button onClick={() => filterButtons("burger")} className="filter-btn btn m-1">🍔 Burgir</button>
+              <button onClick={() => filterButtons("pizza")} className="filter-btn btn m-1">🍕 Pizza</button>
+              <button onClick={() => filterButtons("salad")} className="filter-btn btn m-1">🥗 Salad</button>
+              <button onClick={() => filterButtons("pasta")} className="filter-btn btn m-1">🍝 Pasta</button>
+            </div>
+
+
+            <div className="mb-5">
+              <RestaurantsList list={rest} />
+            </div>
 
           </div>
         </>
