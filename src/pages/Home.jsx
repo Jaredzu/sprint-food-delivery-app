@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Navigate } from 'react-router'
 import RestaurantsList from '../components/RestaurantsList'
 import { auth, restaurantsContext } from '../context'
@@ -8,30 +8,32 @@ const Home = () => {
 
   const { user } = useContext(auth.authContext)
 
-  const { getRestaurants, rest, setRest } = useContext(restaurantsContext.restaurantsContext)
+  const { getRestaurants, rest } = useContext(restaurantsContext.restaurantsContext)
+
+  const [restCopy, setRestCopy] = useState()
 
   useEffect(() => {
     if (!rest) {
       getRestaurants()
     }
+    setRestCopy(rest, "DENTRO DEL USEFFECT");
   }, [rest])
+
 
   // FILTER BUTTONS //
 
   const filterButtons = (_category) => {
 
     if (_category === 'all') {
-      getRestaurants()
-
+      setRestCopy(rest)
     } else {
-/*       getRestaurants() -----------------> esto genera un bug */
       let restFiltered = rest.filter(({ categories }) => {
 
         return categories.includes(_category)
 
       })
 
-      setRest(restFiltered)
+      setRestCopy(restFiltered)
     }
 
   }
@@ -66,7 +68,7 @@ const Home = () => {
 
 
             <div className="mb-5">
-              <RestaurantsList list={rest} />
+              <RestaurantsList list={restCopy} />
             </div>
 
           </div>
