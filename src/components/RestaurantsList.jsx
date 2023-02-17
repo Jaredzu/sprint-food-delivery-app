@@ -2,15 +2,13 @@ import React from 'react'
 
 
 const RestaurantsList = ({ list }) => {
-
-    console.log(list, "LISTAAAAAA");
     return (
         <>
             
             {
                 list && list.map(({ banner, name, stars, schedule }) => (
 
-                    <div className='restaurants-section mb-3'>
+                    <div className='restaurants-section mb-3'key= {name}>
                         <div className="restaurant d-flex mb-2 align-items-center">
                             <img className='mx-1 rounded-3' src={banner} alt="restaurant reference image" />
                             <div className="restaurant-info">

@@ -16,7 +16,7 @@ const Home = () => {
     if (!rest) {
       getRestaurants()
     }
-    setRestCopy(rest, "DENTRO DEL USEFFECT");
+    setRestCopy(rest)
   }, [rest])
 
 
