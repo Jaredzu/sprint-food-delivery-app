@@ -5,7 +5,9 @@ export const restaurantsContext = createContext()
 
 export const RestaurantsProvider = ({ children }) => {
 
-    const [rest, setRest] = useState(null)
+    const [rest, setRest] = useState()  // ALL RESTAURANTS
+
+    const [currentRest, setCurrentRest] = useState(null) // CURRENT RESTAURANT
 
     const getRestaurants = async () => { 
         try {
@@ -19,9 +21,22 @@ export const RestaurantsProvider = ({ children }) => {
         }
     }
 
+    const getRestaurantDetail = async (_id) => { 
+        try {
+
+            const restaurantDetailApi = await restaurants.getRestaurantDetail(_id)
+
+            setCurrentRest(restaurantDetailApi.data)
+            
+        } catch (error) {
+            console.log("Error getRestaurantDetail", error.message);
+
+        }
+    }
+
     return (
         <>
-            <restaurantsContext.Provider value={{ getRestaurants, rest}}>
+            <restaurantsContext.Provider value={{ getRestaurants, rest, getRestaurantDetail, currentRest, setCurrentRest}}>
                 {children}
             </restaurantsContext.Provider>
         </>
