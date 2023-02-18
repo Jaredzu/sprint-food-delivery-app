@@ -1,8 +1,12 @@
 import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
-
 import { restaurantsContext, dishesContext } from '../context'
+import RestDetails from '../components/RestDetails'
+import DishesList from '../components/DishesList'
+import "../styles/RestaurantDetails.sass"
+import logoLoading from "../logos/Splash screen.png"
+
 
 
 const RestaurantDetails = () => {
@@ -21,10 +25,6 @@ const RestaurantDetails = () => {
         }
     }, [id])
 
-    console.log(currentRest, "CURRENT REST DETAILS");
-    console.log(dishesCon, "DISHESCON DETAIL");
-
-
     return (
 
         <>
@@ -34,20 +34,17 @@ const RestaurantDetails = () => {
                         <Link to={"/"}>
                             <i className="fa-solid fa-chevron-left m-3"></i>
                         </Link>
-                        <div className="restaurant-detail">
-                            <div className="restaurant d-flex mb-2 align-items-center">
-                                <img className='mx-1 rounded-3' src={currentRest.banner} alt="restaurant reference" />
-                                <div className="restaurant-info mx-3">
-                                    <h5 className='restaurant-info-title mb-0'>{currentRest.name}</h5>
-                                    <p className='restaurant-info-description mb-0 fw-lighter'>{currentRest.description}</p>
-                                    <p className='restaurant-info-stars mb-0'>{currentRest.stars}</p>
-                                    <p className='restaurant-info-schedule mb-0 fw-lighter'>Work time: {currentRest.schedule}</p>
-                                </div>
-                            </div>
-                        </div>
+
+                        <RestDetails currentRest={currentRest} />
+
+                        <h5 className='m-4'>Our Dishes:</h5>
+                        
+                        <DishesList dishesCon={dishesCon} />
                     </>
                 ) : (
-                    <h1>Perate weee, ya te aviso amigue</h1>
+                    <div className='w-100'>
+                        <img src={logoLoading} alt="" />
+                    </div>
                 )
             }
 
