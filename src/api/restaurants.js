@@ -25,7 +25,6 @@ export const getRestaurants = async () => {
     restaurants.push(rest)
     /*     data.push(doc.data({...user, id})) */
   })
-  console.log(restaurants, "GET RESTAURANTS");
   return { restaurants }
 }
 

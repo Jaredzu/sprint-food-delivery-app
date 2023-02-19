@@ -27,8 +27,7 @@ export const getDishes = async (restaurantId) => {
     /*     data.push(doc.data({...user, id})) */
   })
 
-  console.log(dishes, "API");
-
+/*   console.log(dishes, "API"); */
   return { dishes }
 }
 
