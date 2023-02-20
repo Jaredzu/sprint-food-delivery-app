@@ -29,18 +29,20 @@ const DishDetails = () => {
             {
                 currentDish ? (
                     <>
-                        <Link to={LINK_ADDRESS}>
-                            <i className="fa-solid fa-chevron-left m-3"></i>
-                        </Link>
-                        <DishDetail currentDish={currentDish} />
+                        <div className="d-flex flex-column mb-5">
+                            <Link to={LINK_ADDRESS}>
+                                <i className="fa-solid fa-chevron-left m-3"></i>
+                            </Link>
+                            <DishDetail currentDish={currentDish} />
+                        </div>
                     </>
                 ) : (
                     <>
                         <Link className='position-absolute' to={LINK_ADDRESS}>
-                            <i className="fa-solid fa-chevron-left m-3"></i>
+                            <i className="fa-solid fa-chevron-left m-3 position-relative"></i>
                         </Link>
-                        <div className='w-100'>
-                            <img src={logoLoading} alt="" />
+                        <div className='d-flex loader bg-warning place-content-center m-0'>
+                            <img className='m-auto w-25' src={logoLoading} alt="loading" />
                         </div>
                     </>
                 )
