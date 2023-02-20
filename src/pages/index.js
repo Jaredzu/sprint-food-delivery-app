@@ -5,6 +5,7 @@ import Search from "./Search";
 import Login from "./Login";
 import RestaurantDetails from "./RestaurantDetails";
 import DishDetails from "./DishDetails";
+import ProfileForm from "./ProfileForm";
 
 export {
     Home,
@@ -13,5 +14,6 @@ export {
     Search,
     Login,
     RestaurantDetails,
-    DishDetails
+    DishDetails,
+    ProfileForm
 };

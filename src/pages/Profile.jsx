@@ -1,13 +1,15 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 import { auth as authAPI } from '../api'
 import { auth } from '../context'
 
 
 const Profile = () => {
 
-
   const { user } = useContext(auth.authContext)
+
+  const LINK_ADDRESS = `/profile/${user.uid}`
 
   let navigate = useNavigate()
 
@@ -22,11 +24,13 @@ const Profile = () => {
         <img className='rounded-circle align-self-center' src={user.photoURL} width={"50%"} alt={user.displayName} />
         <h3 className='align-self-center my-3'>{user.displayName}</h3>
         <p className='align-self-center'>{user.email}</p>
-        <div className="profile-item d-flex flex-row align-items-center justify-content-between px-3 py-2 my-1 rounded-3 bg-body-secondary">
-          <i className="fa-regular fa-user"></i>
-          <p className='my-0'>Edit Account</p>
-          <i className="fa-solid fa-chevron-right"></i>
-        </div>
+        <Link to={LINK_ADDRESS}>
+          <div className="profile-item d-flex flex-row align-items-center justify-content-between px-3 py-2 my-1 rounded-3 bg-body-secondary">
+            <i className="fa-regular fa-user"></i>
+            <p className='my-0'>Edit Account</p>
+            <i className="fa-solid fa-chevron-right"></i>
+          </div>
+        </Link>
         <div className="profile-item d-flex flex-row align-items-center justify-content-between px-3 py-2 my-2 rounded-3 bg-body-secondary">
           <i className="fa-solid fa-wallet"></i>
           <p className='my-0'>Payment</p>

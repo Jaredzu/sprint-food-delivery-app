@@ -1,7 +1,7 @@
 import React from "react";
 import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
 import { Navbar } from "./layout";
-import { Home, Search, Profile, Orders, Login, RestaurantDetails, DishDetails } from "./pages"
+import { Home, Search, Profile, Orders, Login, RestaurantDetails, DishDetails, ProfileForm } from "./pages"
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -13,7 +13,8 @@ export const router = createBrowserRouter(
                 <Route path="/search/:Rid/:Did/" element={<DishDetails />} />
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/profile" element={<Profile />} />
-            </Route>id
+                <Route path="/profile/:Pid" element={<ProfileForm />} />
+            </Route>
             <Route path="/restaurantDetails/:Rid/*" element={<RestaurantDetails />} />
             <Route path="/restaurantDetails/:Rid/:Did" element={<DishDetails />} />
         </>
