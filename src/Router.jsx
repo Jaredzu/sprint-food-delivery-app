@@ -10,6 +10,7 @@ export const router = createBrowserRouter(
             <Route path="/" element={<Navbar />} >
                 <Route path="/" element={<Home />} />
                 <Route path="/search" element={<Search />} />
+                <Route path="/search/:Rid/:Did/" element={<DishDetails />} />
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/profile" element={<Profile />} />
             </Route>id

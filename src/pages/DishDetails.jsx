@@ -35,9 +35,14 @@ const DishDetails = () => {
                         <DishDetail currentDish={currentDish} />
                     </>
                 ) : (
-                    <div className='w-100'>
-                        <img src={logoLoading} alt="" />
-                    </div>
+                    <>
+                        <Link className='position-absolute' to={LINK_ADDRESS}>
+                            <i className="fa-solid fa-chevron-left m-3"></i>
+                        </Link>
+                        <div className='w-100'>
+                            <img src={logoLoading} alt="" />
+                        </div>
+                    </>
                 )
             }
         </>
