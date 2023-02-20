@@ -11,19 +11,19 @@ import logoLoading from "../logos/Splash screen.png"
 
 const RestaurantDetails = () => {
 
-    const { id } = useParams()
+    const { Rid } = useParams()
 
     const { getRestaurantDetail, currentRest, setCurrentRest } = useContext(restaurantsContext.restaurantsContext)
     const { getDishes, dishesCon } = useContext(dishesContext.dishesContext)
 
     useEffect(() => {
 
-        if (id) {
+        if (Rid) {
             setCurrentRest(null)
-            getRestaurantDetail(id)
-            getDishes(id)
+            getRestaurantDetail(Rid)
+            getDishes(Rid)
         }
-    }, [id])
+    }, [Rid])
 
     return (
 
@@ -38,12 +38,12 @@ const RestaurantDetails = () => {
                         <RestDetails currentRest={currentRest} />
 
                         <h5 className='m-4'>Our Dishes:</h5>
-                        
+
                         <DishesList dishesCon={dishesCon} />
                     </>
                 ) : (
-                    <div className='w-100'>
-                        <img src={logoLoading} alt="" />
+                    <div className='d-flex loader bg-warning place-content-center'>
+                        <img className='m-auto w-25' src={logoLoading} alt="loading" />
                     </div>
                 )
             }
