@@ -1,18 +1,24 @@
 import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form';
 import { auth } from '../context'
-
-
+import { users } from '../api'
 
 const ProfileForm = () => {
+    const { user, setUser } = useContext(auth.authContext)
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm()
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({
+        values: {
+            id: user.uid,
+            name: user.displayName,
+            email: user.email,
+            picture: user.photoURL,
+        }
+    })
 
-    const { user } = useContext(auth.authContext)
+    const handleForm = (_data) => {
 
+        users.createUser(_data, _data.id)
 
-    const handleForm = () => {
-        console.log("Click");
     }
 
     return (
@@ -21,12 +27,12 @@ const ProfileForm = () => {
                 <img className='rounded-circle align-self-center mb-5' src={user.photoURL} width={"50%"} alt={user.displayName} />
                 <h1>Edit your data</h1>
                 <form onSubmit={handleSubmit(handleForm)}>
-                    <input disabled type="text" className='mb-2 form-control' value={user.uid} placeholder='id'{...register('id')} />
-                    <input type="text" className='mb-2 form-control' value={user.displayName} placeholder='name'{...register('name', { required: true })} />
+                    <input disabled type="text" className='mb-2 form-control' placeholder='id'{...register('id')} />
+                    <input type="text" className='mb-2 form-control' placeholder='name'{...register('name', { required: true })} />
                     {errors.name && <p>Error: it is necessary this field 'name'</p>}
-                    <input type="text" className='mb-2 form-control' value={user.email} placeholder='e-mail'{...register('email', { required: true })} />
+                    <input type="text" className='mb-2 form-control' placeholder='e-mail'{...register('email', { required: true })} />
                     {errors.email && <p>Error: it is necessary this field 'e-mail'</p>}
-                    <input type="text" className='mb-2 form-control' value={user.photoURL} placeholder='picture'{...register('picture', { required: true })} />
+                    <input type="text" className='mb-2 form-control' placeholder='picture'{...register('picture', { required: true })} />
                     {errors.picture && <p>Error: it is necessary this field 'picture'</p>}
                     <button type='submit' className="btn btn-success">
                         Submit
