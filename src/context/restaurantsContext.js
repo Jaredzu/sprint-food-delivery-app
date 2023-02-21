@@ -9,38 +9,40 @@ export const RestaurantsProvider = ({ children }) => {
 
     const [currentRest, setCurrentRest] = useState(null) // CURRENT RESTAURANT
 
-    const getRestaurants = async () => { 
+    const getRestaurants = async () => {
         try {
 
             const restaurantsApi = await restaurants.getRestaurants()
 
             setRest(restaurantsApi.restaurants)
-            
+
         } catch (error) {
             console.log("Error getRestaurants", error.message);
         }
     }
 
-    const getRestaurantDetail = async (_id) => { 
+    const getRestaurantDetail = async (_id) => {
         try {
 
             const restaurantDetailApi = await restaurants.getRestaurantDetail(_id)
 
             setCurrentRest(restaurantDetailApi.data)
-            
+
         } catch (error) {
             console.log("Error getRestaurantDetail", error.message);
 
         }
     }
 
+    const valuesContext = { getRestaurants, rest, getRestaurantDetail, currentRest, setCurrentRest}
+
     return (
         <>
-            <restaurantsContext.Provider value={{ getRestaurants, rest, getRestaurantDetail, currentRest, setCurrentRest}}>
+            <restaurantsContext.Provider value={valuesContext}>
                 {children}
             </restaurantsContext.Provider>
         </>
-    
+
     )
 }
 

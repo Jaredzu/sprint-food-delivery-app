@@ -11,6 +11,9 @@ export const DishesProvider = ({ children }) => {
 
     const [totalDishes, setTotalDishes] = useState([]) // ALL DISHES FROM ALL RESTAURANTS
 
+    const [order, setOrder] = useState([])
+
+
     const getDishes = async (restaurantId) => {
         try {
 
@@ -46,12 +49,11 @@ export const DishesProvider = ({ children }) => {
 
         })
     }
-/*     console.log(totalDishes, "TOTAL DISHES FROM CONTEXT"); */
 
     const valuesContext = {
         getDishes, dishesCon, getDishDetail, currentDish, setCurrentDish,
-        getTotalDishes, totalDishes
-
+        getTotalDishes, totalDishes,
+        order, setOrder
     }
 
 

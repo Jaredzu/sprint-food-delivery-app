@@ -22,7 +22,6 @@ const DishDetails = () => {
         }
     }, [Did])
 
-    console.log("CURRENT DISH", currentDish);
 
     return (
         <>

@@ -27,7 +27,6 @@ const Search = () => {
 
       }
     }
-    console.log(tempDishes, "tempDishes");
 
     handleSearch(filtered, tempDishes)
 
@@ -57,8 +56,6 @@ const Search = () => {
 
 
   }, [totalDishes])
-
-  console.log(totalDishesLocal, "totalDishesLocal");
 
 
   return (
